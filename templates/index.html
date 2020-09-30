@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+{% block desc %}
+
+{% for i in news%}
+<article class="brick entry animate-this">
+
+   <div class="entry-thumb">
+      <a href="{{i[1]}}" class="thumb-link" target="_blank" rel="noopener noreferrer">
+          <img src="{{i[3]}}" alt="building">             
+      </a>
+   </div>
+
+   <div class="entry-text">
+   	<div class="entry-header">
+
+   		<div class="entry-meta">
+   			<span class="cat-links">
+   				<a href="#">{{i[0]}}</a>               				
+   			</span>			
+   		</div>
+         {% if request.args.get('num')%}
+   		<h1 class="entry-title"><a href="{{i[1]}}" target="_blank" rel="noopener noreferrer">{{loop.index+ (30* ((request.args.get('num') | int)-1))}}. {{i[2]}}</a></h1>
+   		{%else%}
+         <h1 class="entry-title"><a href="{{i[1]}}" target="_blank" rel="noopener noreferrer">{{loop.index}}. {{i[2]}}</a></h1>
+         {% endif %}
+   	</div>
+			<div class="entry-excerpt">
+				Click to get more information ....
+			</div>
+   </div>
+
+</article>
+		
+{%endfor%}
+{% endblock %}
